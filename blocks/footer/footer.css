@@ -1,0 +1,14 @@
+.footer {
+  width: calc(100% - 200px);
+  min-height: 18px;
+  margin: 67px auto 69px;
+}
+
+@media screen and (max-width: 470px) {
+  .footer {
+    width: calc(100% - 19px);
+    min-height: 14px;
+    margin-top: 48px;
+    margin-bottom: 36px;
+  }
+}
