@@ -1,0 +1,15 @@
+.pofile__button-add {
+  width: 150px;
+  height: 50px;
+  background-color: black;
+  background-position: center;
+  background-image: url(../../../images/__add.svg);
+  background-repeat: no-repeat;
+  border: 2px solid #ffffff;
+  margin: 35px 0 35px auto;
+}
+
+.pofile__button-add:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}

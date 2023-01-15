@@ -1,0 +1,16 @@
+.pofile__button-edit {
+  width: 24px;
+  height: 24px;
+  background-color: black;
+  background-position: center;
+  background-image: url(../../../images/__edit.svg);
+  background-repeat: no-repeat;
+  border: 1px solid #ffffff;
+  /* align-self: flex-start; */
+  margin: 37px 18px 0;
+}
+
+.pofile__button-edit:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
