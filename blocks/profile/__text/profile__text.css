@@ -1,10 +1,19 @@
 .profile__text {
-  max-width: 294px;
+  max-width: 336px;
   width: 100%;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #ffffff;
-  margin-top: 16px;
+  margin: 16px 0 0;
 }
 
+@media screen and (max-width: 470px) {
+  .profile__text {
+    max-width: 282px;
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 17px;
+    margin-left: 20px;
+  }
+}

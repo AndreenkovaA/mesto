@@ -6,10 +6,18 @@
   background-image: url(../../../images/__add.svg);
   background-repeat: no-repeat;
   border: 2px solid #ffffff;
-  margin: 35px 0 35px auto;
+  margin-left: auto;
 }
 
 .pofile__button-add:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+@media screen and (max-width: 470px) {
+  .pofile__button-add {
+    width: 282px;
+    height: 50px;
+    margin: 36px auto 0;
+  }
 }

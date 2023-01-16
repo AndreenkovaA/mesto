@@ -6,11 +6,18 @@
   background-image: url(../../../images/__edit.svg);
   background-repeat: no-repeat;
   border: 1px solid #ffffff;
-  /* align-self: flex-start; */
-  margin: 37px 18px 0;
+  margin-top: 10px;
+  margin-left: 18px;
 }
 
 .pofile__button-edit:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+@media screen and (max-width: 470px) {
+  .pofile__button-edit {
+    width: 18px;
+    height: 18px;
+  }
 }
