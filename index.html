@@ -17,8 +17,16 @@
         <p class="profile__name">Жак-Ив Кусто<button class="pofile__button-edit"></button></p>
         <p class="profile__text">Исследователь океана</p>
       </div>
-      
       <button class="pofile__button-add"></button>
+    </section>
+    <section class="popup popup_opened">
+      <form class="popup__container">
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <input type="text" class="popup__item" placeholder="Ваше имя" required>
+        <input type="text" class="popup__item" placeholder="О себе" required>
+        <button class="popup__button-submit">Сохранить</button>
+      </form>
+      <button class="popup__button-close"></button>
     </section>
     <section class="elements">
       <div class="elements__element">
@@ -63,7 +71,6 @@
           <div class="elements__heart"></div>
         </div>
       </div>
-      
     </section>
   </main>
   <footer class="footer"> 
