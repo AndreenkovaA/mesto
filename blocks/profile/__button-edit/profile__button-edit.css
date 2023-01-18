@@ -14,15 +14,10 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 955px) {
-  .profile__button-edit {
-    margin-top: 10px;
-  }
-}
-
 @media screen and (max-width: 470px) {
   .profile__button-edit {
     width: 18px;
     height: 18px;
+    margin-top: 10px;
   }
 }

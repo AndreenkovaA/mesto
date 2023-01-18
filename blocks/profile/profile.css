@@ -1,9 +1,15 @@
 .profile {
   display: flex;
   align-items: center;
-  width: 68.75%;
+  width: calc(100% - (100% - 880px));
   min-height: 120px;
   margin: 40px auto 0;
+}
+
+@media screen and (max-width: 960px) {
+  .profile {
+    width: calc(100% - 76px);
+  }
 }
 
 @media screen and (max-width: 715px) {

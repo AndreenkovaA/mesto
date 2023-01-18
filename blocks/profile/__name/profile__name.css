@@ -9,10 +9,16 @@
   align-self: center;
 }
 
-@media screen and (max-width: 955px) {
+/* @media screen and (max-width: 955px) {
   .profile__name {
     font-size: 32px;
     line-height: 36px;
+  }
+} */
+
+@media screen and (max-width: 715px) {
+  .profile__name {
+    text-align: center;
   }
 }
 
