@@ -8,12 +8,17 @@
   margin: 16px 0 0;
 }
 
+@media screen and (max-width: 715px) {
+  .profile__text {
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 470px) {
   .profile__text {
     max-width: 282px;
     margin-top: 14px;
     font-size: 14px;
     line-height: 17px;
-    margin-left: 20px;
   }
 }

@@ -1,4 +1,4 @@
-.pofile__button-edit {
+.profile__button-edit {
   width: 24px;
   height: 24px;
   background-color: black;
@@ -6,17 +6,22 @@
   background-image: url(../../../images/__edit.svg);
   background-repeat: no-repeat;
   border: 1px solid #ffffff;
-  margin-top: 10px;
-  margin-left: 18px;
+  margin-top: 17px;
 }
 
-.pofile__button-edit:hover {
+.profile__button-edit:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
+@media screen and (max-width: 955px) {
+  .profile__button-edit {
+    margin-top: 10px;
+  }
+}
+
 @media screen and (max-width: 470px) {
-  .pofile__button-edit {
+  .profile__button-edit {
     width: 18px;
     height: 18px;
   }

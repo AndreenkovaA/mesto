@@ -5,10 +5,11 @@
   background-position: center;
   background-image: url(../../../images/__сlose-icon.svg);
   background-repeat: no-repeat;
-  margin-top: -373px;
-  margin-left: 8px;
   border: none;
   border-radius: 10px;
+  align-self: flex-end;
+  margin-bottom: 8px;
+  margin-right: -40px;
 }
 
 .popup__button-close:hover {
@@ -16,12 +17,11 @@
   cursor: pointer;
 }
 
-/* @media screen and (max-width: 470px) {
+@media screen and (max-width: 550px) {
   .popup__button-close {
-    width: 238px;
-    height: 46px;
-    margin: 45px 22px 25px 22px;
-    font-size: 14px;
-    line-height: 17px;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 16px;
+    margin-right: 0;
   }
-} */
+}

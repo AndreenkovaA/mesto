@@ -6,11 +6,18 @@
   line-height: 48px;
   color: #ffffff;
   margin: 0;
+  align-self: center;
+}
+
+@media screen and (max-width: 955px) {
+  .profile__name {
+    font-size: 32px;
+    line-height: 36px;
+  }
 }
 
 @media screen and (max-width: 470px) {
   .profile__name {
-    margin-top: 26px;
     font-size: 27px;
     line-height: 33px;
   }

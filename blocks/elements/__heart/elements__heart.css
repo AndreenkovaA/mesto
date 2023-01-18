@@ -3,7 +3,7 @@
   height: 19px;
   background-image: url(../../../images/__heart.svg);
   background-repeat: no-repeat;
-  margin: 5px 5px 1px auto;
+  margin: 5px 5px 1px 10px;
 }
 
 .elements__heart:hover {
