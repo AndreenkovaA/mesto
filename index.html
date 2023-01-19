@@ -14,19 +14,8 @@
     <section class="profile">
       <img class="profile__avatar" src="./images/__avatar.jpg" alt="аватар пользователя">
       <div class="profile__info">
-        <p class="profile__name">Жак-Ив Кусто</p>
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button class="profile__button-edit"></button>
-        <div class="popup">
-          <div class="popup__container">
-            <button class="popup__button-close"></button>
-            <form class="form">
-              <h2 class="form__heading">Редактировать профиль</h2>
-              <input type="text" class="form__item" value="Жак-Ив Кусто" placeholder="Имя" required>
-              <input type="text" class="form__item" value="Исследователь океана" placeholder="О себе" required>
-              <button class="form__button-submit">Сохранить</button>
-            </form>
-          </div>
-        </div>
         <p class="profile__text">Исследователь океана</p>
       </div>
       <button class="profile__button-add"></button>
@@ -35,42 +24,42 @@
       <div class="elements__element">
         <img class="elements__photo" src="./images/__tambov.jpg" alt="Тамбов">
         <div class="elements__group">
-          <p class="elements__title">Тамбов</p>
+          <h2 class="elements__title">Тамбов</h2>
           <div class="elements__heart"></div>
         </div>
       </div>
       <div class="elements__element">
         <img class="elements__photo" src="./images/__volgograd.jpg" alt="Волгоград">
         <div class="elements__group">
-          <p class="elements__title">Волгоград</p>
+          <h2 class="elements__title">Волгоград</h2>
           <div class="elements__heart"></div>
         </div>
       </div>
       <div class="elements__element">
         <img class="elements__photo" src="./images/__elista.jpg" alt="Элиста">
         <div class="elements__group">
-          <p class="elements__title">Элиста</p>
+          <h2 class="elements__title">Элиста</h2>
           <div class="elements__heart"></div>
         </div>
       </div>
       <div class="elements__element">
         <img class="elements__photo" src="./images/__elbrus.jpg" alt="Эльбрус">
         <div class="elements__group">
-          <p class="elements__title">Гора Эльбрус</p>
+          <h2 class="elements__title">Гора Эльбрус</h2>
           <div class="elements__heart"></div>
         </div>
       </div>
       <div class="elements__element">
         <img class="elements__photo" src="./images/__dombai.jpg" alt="Домбай">
         <div class="elements__group">
-          <p class="elements__title">Домбай</p>
+          <h2 class="elements__title">Домбай</h2>
           <div class="elements__heart"></div>
         </div>
       </div>
       <div class="elements__element">
         <img class="elements__photo" src="./images/__karachaevsk.jpg" alt="Карачаевск">
         <div class="elements__group">
-          <p class="elements__title">Карачаево-Черкессия</p>
+          <h2 class="elements__title">Карачаево-Черкессия</h2>
           <div class="elements__heart"></div>
         </div>
       </div>
@@ -79,6 +68,17 @@
   <footer class="footer"> 
     <p class="footer__copyright">&copy;2023 Mesto Russia</p>
   </footer>
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__button-close"></button>
+      <form class="form" name="myProfile" method="post">
+        <h2 class="form__heading">Редактировать профиль</h2>
+        <input type="text" class="form__item" name="name" id="name" placeholder="Имя" required>
+        <input type="text" class="form__item" name="job" id="job" placeholder="О себе" required>
+        <button class="form__button-submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
   <script src="./script/script.js"></script>
 </body>
 </html>
