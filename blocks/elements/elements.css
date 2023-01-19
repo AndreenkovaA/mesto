@@ -20,8 +20,8 @@
 
 @media screen and (max-width: 470px) {
   .elements {
-    width: calc(100% - 38px);
-    grid-template-columns: repeat(1, minmax(auto, auto));
+    width: calc(100% - (100% - 282px));
+    display: block;
     margin-top: 36px;
   }
 }

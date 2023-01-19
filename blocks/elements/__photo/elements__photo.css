@@ -1,5 +1,11 @@
 .elements__photo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: fill;
+  width: 100%;
+  min-height: calc(100% - 90px);
+  object-fit: cover;
+}
+
+@media screen and (max-width: 470px) {
+  .elements__photo {
+    min-height: 282px;
+  }
 }
