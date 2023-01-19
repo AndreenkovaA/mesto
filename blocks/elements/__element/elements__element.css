@@ -4,7 +4,7 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 610px) {
   .elements__element {
     margin-top: 20px;
   }
