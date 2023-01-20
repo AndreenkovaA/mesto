@@ -9,6 +9,7 @@
   color: #ffffff;
   margin: 48px 36px 37px 36px;
   border-radius: 2px;
+  border: 0;
 }
 
 .form__button-submit:hover {
