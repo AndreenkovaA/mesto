@@ -1,4 +1,5 @@
 .footer {
+  flex-shrink: 0;
   width: calc(100% - (100% - 880px));
   margin: 67px auto 69px;
 }
