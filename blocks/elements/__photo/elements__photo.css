@@ -1,12 +1,11 @@
 .elements__photo {
   width: 100%;
-  min-height: 280px;
-  background-size: cover;
-  background-position: center;
+  height: 280px;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 610px) {
   .elements__photo {
-    min-height: 282px;
+    height: 282px;
   }
 }
