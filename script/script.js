@@ -9,8 +9,13 @@ let jobInput = document.getElementById('job');
 let profileName = document.querySelector('.profile__name');
 let profileText = document.querySelector('.profile__text');
 let addButton = document.querySelector('.profile__button-add');
+let createButton = popupCard.querySelector('.form__button-submit');
+let elementCard = document.querySelector('.elements__element');
 
 const elements = document.querySelector('.elements');
+
+const nameTitle = popupCard.querySelector('.form__item_name');
+const link = popupCard.querySelector('.form__item_link');
 
 const initialCards = [
   {
@@ -39,32 +44,23 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach(function (element) { 
-  const card = document.createElement('div');
-  card.classList.add('elements__element');
-
-  const cardPhoto = document.createElement('img');
-  cardPhoto.classList.add('elements__photo');
-  cardPhoto.src = element.link;
-  cardPhoto.alt = element.name;
-
-  const cardElements = document.createElement('div');
-  cardElements.classList.add('elements__group');
-
-  const cardTitle = document.createElement('h2');
-  cardTitle.classList.add('elements__title');
-  cardTitle.textContent = element.name;
+initialCards.forEach(function (element) {
+  const cards = elementCard.cloneNode(true);
   
-  const cardBtnLike = document.createElement('button');
-  cardBtnLike.classList.add('elements__heart');
-  cardBtnLike.type = "button";
+  cards.querySelector('.elements__title').textContent = element.name;
+  cards.querySelector('.elements__photo').style.backgroundImage = 'url('+element.link+')';
 
-  cardElements.append(cardTitle);
-  cardElements.append(cardBtnLike);
-  card.append(cardPhoto);
-  card.append(cardElements);
-  elements.append(card);
+  elements.append(cards);
+
 });
+
+function createCard() {
+  const cards = elementCard.cloneNode(true);
+  cards.querySelector('.elements__title').textContent = nameTitle.value;
+  cards.querySelector('.elements__photo').style.backgroundImage = 'url('+link.value+')';
+  elements.prepend(cards);
+  togglePopup(popupCard);
+}
 
 function togglePopup(element) {
   element.classList.toggle('popup_opened');
@@ -86,8 +82,16 @@ function handleFormSubmit (evt) {
   popupProfile();
 }
 
+function addCard() {
+  togglePopup(popupCard);
+  nameTitle.value = '';
+  link.value = '';
+}
+
 editButton.addEventListener('click', popupProfile);
 closeButtonProfile.addEventListener('click', function () { togglePopup(popupEditProfile); });
-addButton.addEventListener('click', function () { togglePopup(popupCard); });
+addButton.addEventListener('click', addCard);
 closeButtonCard.addEventListener('click', function () { togglePopup(popupCard); });
 formElement.addEventListener('submit', handleFormSubmit);
+
+createButton.addEventListener('click', createCard);

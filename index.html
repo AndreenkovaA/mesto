@@ -21,7 +21,15 @@
       <button class="profile__button-add" type="button"></button>
     </section>
     <section class="elements">
-      
+      <div class="elements__hidden">
+        <div class="elements__element"> 
+          <div class="elements__photo" style="background-image:url('')"></div>
+          <div class="elements__group"> 
+            <h2 class="elements__title"></h2> 
+            <button class="elements__heart" type="button"></button> 
+          </div> 
+        </div>
+      </div>
     </section>
   </main>
   <footer class="footer"> 
@@ -43,9 +51,9 @@
       <button class="popup__button-close popup__button-close_card" type="button"></button>
       <form class="form" name="myProfile" method="post">
         <h2 class="form__heading">Новое место</h2>
-        <input type="text" class="form__item" name="name" id="name" placeholder="Название" required>
-        <input type="text" class="form__item" name="job" id="job" placeholder="Ссылка на картинку" required>
-        <button class="form__button-submit" type="submit">Создать</button>
+        <input type="text" class="form__item form__item_name" name="name" placeholder="Название" required>
+        <input type="text" class="form__item form__item_link" name="job" placeholder="Ссылка на картинку" required>
+        <button class="form__button-submit" type="button">Создать</button>
       </form>
     </div>
   </div>

@@ -20,6 +20,7 @@
 @import url(../blocks/form/__item/form__item.css);
 @import url(../blocks/form/__button-submit/form__button-submit.css);
 @import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__hidden/elements__hidden.css);
 @import url(../blocks/elements/__element/elements__element.css);
 @import url(../blocks/elements/__photo/elements__photo.css);
 @import url(../blocks/elements/__group/elements__group.css);
