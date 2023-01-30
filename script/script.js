@@ -1,11 +1,14 @@
 let editButton = document.querySelector('.profile__button-edit');
-let popup = document.querySelector('.popup');
-let closeButton = document.querySelector('.popup__button-close');
+let popupEditProfile = document.querySelector('.popup_type_profile');
+let popupCard = document.querySelector('.popup_type_card');
+let closeButtonProfile = document.querySelector('.popup__button-close_profile');
+let closeButtonCard = document.querySelector('.popup__button-close_card');
 let formElement = document.querySelector('.form');
 let nameInput = document.getElementById('name');
 let jobInput = document.getElementById('job');
 let profileName = document.querySelector('.profile__name');
 let profileText = document.querySelector('.profile__text');
+let addButton = document.querySelector('.profile__button-add');
 
 const elements = document.querySelector('.elements');
 
@@ -63,21 +66,28 @@ initialCards.forEach(function (element) {
   elements.append(card);
 });
 
-function togglePopup() {
-  if (!popup.classList.contains('popup_opened')) {
+function togglePopup(element) {
+  element.classList.toggle('popup_opened');
+}
+
+function popupProfile() {
+  if (!popupEditProfile.classList.contains('popup_opened')) {
     nameInput.value = profileName.textContent;
     jobInput.value = profileText.textContent;
   }
-  popup.classList.toggle('popup_opened');
+
+  togglePopup(popupEditProfile);
 }
 
 function handleFormSubmit (evt) {
   evt.preventDefault(); 
   profileName.textContent = nameInput.value;
   profileText.textContent = jobInput.value;
-  togglePopup();
+  popupProfile();
 }
 
-editButton.addEventListener('click', togglePopup);
-closeButton.addEventListener('click', togglePopup);
+editButton.addEventListener('click', popupProfile);
+closeButtonProfile.addEventListener('click', function () { togglePopup(popupEditProfile); });
+addButton.addEventListener('click', function () { togglePopup(popupCard); });
+closeButtonCard.addEventListener('click', function () { togglePopup(popupCard); });
 formElement.addEventListener('submit', handleFormSubmit);
