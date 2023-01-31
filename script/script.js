@@ -10,14 +10,10 @@ let jobInput = document.getElementById('job');
 let profileName = document.querySelector('.profile__name');
 let profileText = document.querySelector('.profile__text');
 let addButton = document.querySelector('.profile__button-add');
-let createButton = popupCard.querySelector('.form__button-submit');
-// let elementCard = document.querySelector('.elements__element');
 
 const elements = document.querySelector('.elements');
-
 const nameTitle = popupCard.querySelector('.form__item_name');
 const link = popupCard.querySelector('.form__item_link');
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -48,13 +44,20 @@ const initialCards = [
 function createCard(nameValue, linkValue) {
   const elementTemplate = document.querySelector('.elements__template').content;
   const elementCard = elementTemplate.querySelector('.elements__element').cloneNode(true);
+  const buttonDelete = elementCard.querySelector('.elements__button-delete');
 
   elementCard.querySelector('.elements__title').textContent = nameValue;
   elementCard.querySelector('.elements__photo').style.backgroundImage = 'url(' + linkValue + ')';
+
   elementCard.querySelector('.elements__heart').addEventListener('click', function (evt) {
     evt.target.classList.toggle('elements__heart_active');
   });
   
+  buttonDelete.addEventListener('click', function () {
+    const deleteCard = buttonDelete.closest('.elements__element');
+    deleteCard.remove();
+  });
+
   return elementCard;
 }
 
@@ -99,3 +102,5 @@ closeButtonCard.addEventListener('click', function () { togglePopup(popupCard); 
 
 formElement.addEventListener('submit', handleFormSubmit);
 formAddCard.addEventListener('submit', addCard);
+
+
