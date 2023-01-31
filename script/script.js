@@ -51,6 +51,9 @@ function createCard(nameValue, linkValue) {
 
   elementCard.querySelector('.elements__title').textContent = nameValue;
   elementCard.querySelector('.elements__photo').style.backgroundImage = 'url(' + linkValue + ')';
+  elementCard.querySelector('.elements__heart').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('elements__heart_active');
+  });
   
   return elementCard;
 }
