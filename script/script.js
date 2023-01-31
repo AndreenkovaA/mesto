@@ -4,6 +4,7 @@ let popupCard = document.querySelector('.popup_type_card');
 let closeButtonProfile = document.querySelector('.popup__button-close_profile');
 let closeButtonCard = document.querySelector('.popup__button-close_card');
 let formElement = document.querySelector('.form');
+let formAddCard = document.querySelector('.form_add_card');
 let nameInput = document.getElementById('name');
 let jobInput = document.getElementById('job');
 let profileName = document.querySelector('.profile__name');
@@ -54,7 +55,8 @@ initialCards.forEach(function (element) {
 
 });
 
-function createCard() {
+function createCard(evt) {
+  evt.preventDefault();
   const cards = elementCard.cloneNode(true);
   cards.querySelector('.elements__title').textContent = nameTitle.value;
   cards.querySelector('.elements__photo').style.backgroundImage = 'url('+link.value+')';
@@ -94,4 +96,4 @@ addButton.addEventListener('click', addCard);
 closeButtonCard.addEventListener('click', function () { togglePopup(popupCard); });
 formElement.addEventListener('submit', handleFormSubmit);
 
-createButton.addEventListener('click', createCard);
+formAddCard.addEventListener('submit', createCard);
