@@ -56,7 +56,8 @@ function createCard(nameValue, linkValue) {
     evt.target.classList.toggle('elements__heart_active');
   });
   
-  buttonDelete.addEventListener('click', function () {
+  buttonDelete.addEventListener('click', function (event) {
+    event.stopPropagation();
     const deleteCard = buttonDelete.closest('.elements__element');
     deleteCard.remove();
   });
@@ -69,6 +70,7 @@ function createCard(nameValue, linkValue) {
     }
     togglePopup(popupPhoto);
   })
+  
 
   return elementCard;
 }
