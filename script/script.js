@@ -28,11 +28,8 @@ function hideForm(formHide) {
 } 
 
 function openPopupProfile() {
-  if (!popupEditProfile.classList.contains('popup_opened')) {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileText.textContent;
-  }
-
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileText.textContent;
   openForm(popupEditProfile);
 }
 
@@ -63,11 +60,9 @@ function createCard(nameValue, linkValue) {
   });
 
   elementPhoto.addEventListener('click', function () {
-    if (!popupPhoto.classList.contains('popup_opened')) {
-      img.src = linkValue;
-      img.alt = nameValue;
-      caption.textContent = nameValue;
-    }
+    img.src = linkValue;
+    img.alt = nameValue;
+    caption.textContent = nameValue;
     openForm(popupPhoto);
   })
   
