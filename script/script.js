@@ -77,6 +77,14 @@ function addCard(evt) {
   formAddCard.reset();
 }
 
+function keyEsc(evt) {
+  if (evt.key === 'Escape') {
+    hideForm(popupEditProfile);
+    hideForm(popupCard);
+    hideForm(popupPhoto)
+  }
+}
+
 initialCards.forEach((element) => {
   const cards = createCard(element.name, element.link);
   gallery.append(cards);
@@ -89,3 +97,4 @@ buttonCloseCard.addEventListener('click', function () { hideForm(popupCard); });
 buttonClosePhoto.addEventListener('click', function () { hideForm(popupPhoto); });
 formProfile.addEventListener('submit', handleFormSubmit);
 formAddCard.addEventListener('submit', addCard);
+document.body.addEventListener('keydown', keyEsc);
