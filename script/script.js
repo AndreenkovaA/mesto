@@ -98,3 +98,9 @@ buttonClosePhoto.addEventListener('click', function () { hideForm(popupPhoto); }
 formProfile.addEventListener('submit', handleFormSubmit);
 formAddCard.addEventListener('submit', addCard);
 document.body.addEventListener('keydown', keyEsc);
+popupEditProfile.addEventListener('mousedown', function () {hideForm(popupEditProfile); });
+popupEditProfile.querySelector('.popup__container_type_profile').addEventListener('mousedown', function (e) { e.stopPropagation(); });
+popupCard.addEventListener('mousedown', function () {hideForm(popupCard); });
+popupCard.querySelector('.popup__container_type_card').addEventListener('mousedown', function (e) {e.stopPropagation(); });
+popupPhoto.addEventListener('mousedown', function () {hideForm(popupPhoto); });
+popupPhoto.querySelector('.popup__container_type_photo').addEventListener('mousedown', function (e) { e.stopPropagation(); });
