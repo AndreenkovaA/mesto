@@ -20,7 +20,7 @@ const formProfile = document.querySelector('.form_type_profile');
 const formAddCard = document.querySelector('.form_type_add-card');
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
-const formList = Array.from(document.querySelectorAll('.form'));
+const popupContainerList = Array.from(document.querySelectorAll('.popup__container'));
 
 function openForm(formOpen) { 
   formOpen.classList.add('popup_opened'); 
@@ -94,8 +94,8 @@ popupList.forEach((popup) => {
   })
 })
 
-formList.forEach((form) => {
-  form.addEventListener('mousedown', (e) => {
+popupContainerList.forEach((popupContainer) => {
+  popupContainer.addEventListener('mousedown', (e) => {
     e.stopPropagation();
   })
 })
