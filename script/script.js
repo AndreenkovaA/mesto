@@ -19,6 +19,9 @@ const caption = document.querySelector('.container__caption');
 const formProfile = document.querySelector('.form_type_profile');
 const formAddCard = document.querySelector('.form_type_add-card');
 
+const popupList = Array.from(document.querySelectorAll('.popup'));
+const formList = Array.from(document.querySelectorAll('.form'));
+
 function openForm(formOpen) { 
   formOpen.classList.add('popup_opened'); 
 }
@@ -78,12 +81,25 @@ function addCard(evt) {
 }
 
 function keyEsc(evt) {
-  if (evt.key === 'Escape') {
-    hideForm(popupEditProfile);
-    hideForm(popupCard);
-    hideForm(popupPhoto)
-  }
+  popupList.forEach((popupItem) => {
+    if (evt.key === 'Escape') {
+      hideForm(popupItem);
+    };
+  });
 }
+
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', () => {
+    hideForm(popup);
+  })
+})
+
+formList.forEach((form) => {
+  form.addEventListener('mousedown', (e) => {
+    e.stopPropagation();
+  })
+})
+
 
 initialCards.forEach((element) => {
   const cards = createCard(element.name, element.link);
@@ -97,11 +113,4 @@ buttonCloseCard.addEventListener('click', function () { hideForm(popupCard); });
 buttonClosePhoto.addEventListener('click', function () { hideForm(popupPhoto); });
 formProfile.addEventListener('submit', handleFormSubmit);
 formAddCard.addEventListener('submit', addCard);
-
 document.body.addEventListener('keydown', keyEsc);
-popupEditProfile.addEventListener('mousedown', function () {hideForm(popupEditProfile); });
-popupEditProfile.querySelector('.popup__container_type_profile').addEventListener('mousedown', function (e) { e.stopPropagation(); });
-popupCard.addEventListener('mousedown', function () {hideForm(popupCard); });
-popupCard.querySelector('.popup__container_type_card').addEventListener('mousedown', function (e) {e.stopPropagation(); });
-popupPhoto.addEventListener('mousedown', function () {hideForm(popupPhoto); });
-popupPhoto.querySelector('.popup__container_type_photo').addEventListener('mousedown', function (e) { e.stopPropagation(); });
