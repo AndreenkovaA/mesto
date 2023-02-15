@@ -13,11 +13,14 @@ const buttonCloseCard = document.querySelector('.popup__button-close_type_card')
 const buttonClosePhoto = document.querySelector('.popup__button-close_type_photo');
 const gallery = document.querySelector('.elements');
 const nameTitle = popupCard.querySelector('.form__item_name');
-const link = popupCard.querySelector('.form__item_link');
+const linkInput = popupCard.querySelector('.form__item_link');
 const img = document.querySelector('.container__img');
 const caption = document.querySelector('.container__caption');
 const formProfile = document.querySelector('.form_type_profile');
 const formAddCard = document.querySelector('.form_type_add-card');
+
+const popupList = Array.from(document.querySelectorAll('.popup'));
+const popupContainerList = Array.from(document.querySelectorAll('.popup__container'));
 
 function openForm(formOpen) { 
   formOpen.classList.add('popup_opened'); 
@@ -71,11 +74,32 @@ function createCard(nameValue, linkValue) {
 
 function addCard(evt) {
   evt.preventDefault();
-  const card = createCard(nameTitle.value, link.value);
+  const card = createCard(nameTitle.value, linkInput.value);
   gallery.prepend(card);
   hideForm(popupCard);
   formAddCard.reset();
 }
+
+function keyEsc(evt) {
+  popupList.forEach((popupItem) => {
+    if (evt.key === 'Escape') {
+      hideForm(popupItem);
+    };
+  });
+}
+
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', () => {
+    hideForm(popup);
+  })
+})
+
+popupContainerList.forEach((popupContainer) => {
+  popupContainer.addEventListener('mousedown', (e) => {
+    e.stopPropagation();
+  })
+})
+
 
 initialCards.forEach((element) => {
   const cards = createCard(element.name, element.link);
@@ -89,3 +113,4 @@ buttonCloseCard.addEventListener('click', function () { hideForm(popupCard); });
 buttonClosePhoto.addEventListener('click', function () { hideForm(popupPhoto); });
 formProfile.addEventListener('submit', handleFormSubmit);
 formAddCard.addEventListener('submit', addCard);
+document.body.addEventListener('keydown', keyEsc);
