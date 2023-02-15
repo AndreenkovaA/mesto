@@ -13,7 +13,7 @@ const buttonCloseCard = document.querySelector('.popup__button-close_type_card')
 const buttonClosePhoto = document.querySelector('.popup__button-close_type_photo');
 const gallery = document.querySelector('.elements');
 const nameTitle = popupCard.querySelector('.form__item_name');
-const link = popupCard.querySelector('.form__item_link');
+const linkInput = popupCard.querySelector('.form__item_link');
 const img = document.querySelector('.container__img');
 const caption = document.querySelector('.container__caption');
 const formProfile = document.querySelector('.form_type_profile');
@@ -71,7 +71,7 @@ function createCard(nameValue, linkValue) {
 
 function addCard(evt) {
   evt.preventDefault();
-  const card = createCard(nameTitle.value, link.value);
+  const card = createCard(nameTitle.value, linkInput.value);
   gallery.prepend(card);
   hideForm(popupCard);
   formAddCard.reset();
@@ -97,6 +97,7 @@ buttonCloseCard.addEventListener('click', function () { hideForm(popupCard); });
 buttonClosePhoto.addEventListener('click', function () { hideForm(popupPhoto); });
 formProfile.addEventListener('submit', handleFormSubmit);
 formAddCard.addEventListener('submit', addCard);
+
 document.body.addEventListener('keydown', keyEsc);
 popupEditProfile.addEventListener('mousedown', function () {hideForm(popupEditProfile); });
 popupEditProfile.querySelector('.popup__container_type_profile').addEventListener('mousedown', function (e) { e.stopPropagation(); });
