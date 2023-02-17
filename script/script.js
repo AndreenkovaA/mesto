@@ -6,6 +6,8 @@ const profileName = document.querySelector('.profile__name');
 const profileText = document.querySelector('.profile__text');
 const buttonCloseProfile = document.querySelector('.popup__button-close_type_profile');
 
+const elementTemplate = document.querySelector('#elements__template').content;
+const elementCard = elementTemplate.querySelector('.elements__element');
 const popupPhoto = document.querySelector('.popup_type_photo');
 const buttonAdd = document.querySelector('.profile__button-add');
 const popupCard = document.querySelector('.popup_type_card');
@@ -14,83 +16,83 @@ const buttonClosePhoto = document.querySelector('.popup__button-close_type_photo
 const gallery = document.querySelector('.elements');
 const nameTitle = popupCard.querySelector('.form__item_name');
 const linkInput = popupCard.querySelector('.form__item_link');
-const img = document.querySelector('.container__img');
-const caption = document.querySelector('.container__caption');
+const popupPhotoImageElement = document.querySelector('.container__img');
+const popupPhotoCaption = document.querySelector('.container__caption');
 const formProfile = document.querySelector('.form_type_profile');
 const formAddCard = document.querySelector('.form_type_add-card');
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 const popupContainerList = Array.from(document.querySelectorAll('.popup__container'));
 
-function openForm(formOpen) { 
-  formOpen.classList.add('popup_opened'); 
+function openPopup(popup) { 
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleClosePopupByEsc);
 }
 
-function hideForm(formHide) { 
-  formHide.classList.remove('popup_opened'); 
-} 
+function hidePopup(popup) { 
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleClosePopupByEsc);
+}
 
 function openPopupProfile() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileText.textContent;
-  openForm(popupEditProfile);
+  openPopup(popupEditProfile);
 }
 
-function handleFormSubmit (evt) {
+function handleProfileFormSubmit (evt) {
   evt.preventDefault(); 
   profileName.textContent = nameInput.value;
   profileText.textContent = jobInput.value;
-  hideForm(popupEditProfile);
+  hidePopup(popupEditProfile);
 }
 
-function createCard(nameValue, linkValue) {
-  const elementTemplate = document.querySelector('#elements__template').content;
-  const elementCard = elementTemplate.querySelector('.elements__element').cloneNode(true);
-  const buttonDelete = elementCard.querySelector('.elements__button-delete');
-  const elementPhoto = elementCard.querySelector('.elements__photo');
+function createCard(cardData) {
+  const elementCardClone = elementCard.cloneNode(true);
+  const buttonDelete = elementCardClone.querySelector('.elements__button-delete');
+  const elementPhoto = elementCardClone.querySelector('.elements__photo');
 
-  elementCard.querySelector('.elements__title').textContent = nameValue;
-  elementPhoto.style.backgroundImage = 'url(' + linkValue + ')';
+  elementCardClone.querySelector('.elements__title').textContent = cardData.name;
+  elementPhoto.style.backgroundImage = 'url(' + cardData.link + ')';
 
-  elementCard.querySelector('.elements__heart').addEventListener('click', function (evt) {
+  elementCardClone.querySelector('.elements__heart').addEventListener('click', function (evt) {
     evt.target.classList.toggle('elements__heart_active');
   });
   
   buttonDelete.addEventListener('click', function (event) {
     event.stopPropagation();
-    const deleteCard = buttonDelete.closest('.elements__element');
-    deleteCard.remove();
+    const card = buttonDelete.closest('.elements__element');
+    card.remove();
   });
 
   elementPhoto.addEventListener('click', function () {
-    img.src = linkValue;
-    img.alt = nameValue;
-    caption.textContent = nameValue;
-    openForm(popupPhoto);
+    popupPhotoImageElement.src = cardData.link;
+    popupPhotoImageElement.alt = cardData.name;
+    popupPhotoCaption.textContent = cardData.name;
+    openPopup(popupPhoto);
   })
   
-  return elementCard;
+  return elementCardClone;
 }
 
 function addCard(evt) {
   evt.preventDefault();
-  const card = createCard(nameTitle.value, linkInput.value);
+  const card = createCard({name: nameTitle.value, link: linkInput.value});
   gallery.prepend(card);
-  hideForm(popupCard);
+  hidePopup(popupCard);
   formAddCard.reset();
 }
 
-function keyEsc(evt) {
-  popupList.forEach((popupItem) => {
-    if (evt.key === 'Escape') {
-      hideForm(popupItem);
-    };
-  });
+function handleClosePopupByEsc(evt) {
+  const popupItem = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    hidePopup(popupItem);
+  };
 }
 
 popupList.forEach((popup) => {
   popup.addEventListener('mousedown', () => {
-    hideForm(popup);
+    hidePopup(popup);
   })
 })
 
@@ -100,17 +102,16 @@ popupContainerList.forEach((popupContainer) => {
   })
 })
 
-
 initialCards.forEach((element) => {
-  const cards = createCard(element.name, element.link);
-  gallery.append(cards);
+  const card = createCard(element);
+  gallery.append(card);
 });
 
 buttonEdit.addEventListener('click', openPopupProfile);
-buttonCloseProfile.addEventListener('click', function () { hideForm(popupEditProfile); });
-buttonAdd.addEventListener('click', function () { openForm(popupCard); });
-buttonCloseCard.addEventListener('click', function () { hideForm(popupCard); });
-buttonClosePhoto.addEventListener('click', function () { hideForm(popupPhoto); });
-formProfile.addEventListener('submit', handleFormSubmit);
+buttonCloseProfile.addEventListener('click', function () { hidePopup(popupEditProfile); });
+buttonAdd.addEventListener('click', function () { openPopup(popupCard); });
+buttonCloseCard.addEventListener('click', function () { hidePopup(popupCard); });
+buttonCloseCard.addEventListener('click', function () { formAddCard.reset(); });
+buttonClosePhoto.addEventListener('click', function () { hidePopup(popupPhoto); });
+formProfile.addEventListener('submit', handleProfileFormSubmit);
 formAddCard.addEventListener('submit', addCard);
-document.body.addEventListener('keydown', keyEsc);
