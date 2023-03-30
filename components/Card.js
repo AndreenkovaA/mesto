@@ -1,9 +1,9 @@
-import {openCardPopup} from "./utils.js";
-export class Card {
-  constructor(data, templateSelector) {
+export default class Card {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this.handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -29,15 +29,12 @@ export class Card {
 
   _setEventListeners() {
     const buttonDeleteCard = this._element.querySelector('.elements__button-delete');
-    const cardData = { name: this._name, link: this._link };
 
     this._element.querySelector('.elements__heart').addEventListener('click', function (evt) {
       evt.target.classList.toggle('elements__heart_active');
     });
   
-    this._imageElement.addEventListener('click', function () { 
-      openCardPopup(cardData); 
-    });
+    this._imageElement.addEventListener('click', this.handleCardClick);
 
     buttonDeleteCard.addEventListener('click', function (evt) {
       evt.stopPropagation();
