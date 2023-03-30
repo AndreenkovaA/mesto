@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(settings, formElement) {
     this._formSelector = settings.formSelector;
     this._inputSelector = settings.inputSelector;
@@ -23,6 +23,13 @@ export class FormValidator {
 
   dropInputError(inputElement) {
     this._hideInputError(inputElement);
+  }
+
+  dropAllErrors() {
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+    this._toggleButtonState();
   }
 
   disableSubmitButton() {
