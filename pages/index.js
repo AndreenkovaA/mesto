@@ -9,7 +9,7 @@ import {
   nameTitle,
   linkInput,
   settings
-} from "../script/constans.js";
+} from "../constans/constans.js";
 
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
