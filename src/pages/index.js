@@ -1,3 +1,5 @@
+import './index.css';
+
 import {
   buttonEdit,
   nameInput,
@@ -10,6 +12,8 @@ import {
   linkInput,
   settings
 } from "../constans/constans.js";
+
+import {initialCards} from "../constans/cards.js";
 
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
