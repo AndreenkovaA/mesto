@@ -27,18 +27,21 @@ export default class Card {
     return this._element;
   }
 
+  likeCard(evt) {
+    evt.target.classList.toggle('elements__heart_active');
+  }
+
+  deleteCard(evt) {
+    evt.stopPropagation();
+    this._element.remove();
+    this._element = null;
+  }
+
   _setEventListeners() {
     const buttonDeleteCard = this._element.querySelector('.elements__button-delete');
 
-    this._element.querySelector('.elements__heart').addEventListener('click', function (evt) {
-      evt.target.classList.toggle('elements__heart_active');
-    });
-  
+    this._element.querySelector('.elements__heart').addEventListener('click', (evt) => this.likeCard(evt));
     this._imageElement.addEventListener('click', this.handleCardClick);
-
-    buttonDeleteCard.addEventListener('click', function (evt) {
-      evt.stopPropagation();
-      buttonDeleteCard.closest('.elements__element').remove();
-    });
+    buttonDeleteCard.addEventListener('click', (evt) => this.deleteCard(evt));
   }
 }

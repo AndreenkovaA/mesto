@@ -17,14 +17,6 @@ export default class FormValidator {
     this._setEventListeners();
   };
 
-  checkButtonState() {
-    this._toggleButtonState();
-  }
-
-  dropInputError(inputElement) {
-    this._hideInputError(inputElement);
-  }
-
   dropAllErrors() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);

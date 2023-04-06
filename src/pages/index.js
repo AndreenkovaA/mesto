@@ -28,19 +28,18 @@ profileFormValidator.enableValidation();
 const cardFormValidator = new FormValidator(settings, formAddCard);
 cardFormValidator.enableValidation();
 
+function createCard(item) {
+  const card = new Card(item, '.elements__template', () => {
+    popupPhoto.open(item);
+  });
+  return card.generateCard();
+}
+
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(
-        item,
-        '.elements__template',
-        () => {
-          popupPhoto.open(item);
-        }
-      );
-      const cardElement = card.generateCard();
-
+      const cardElement = createCard(item);
       cardList.addItem(cardElement);
     }
   },
@@ -50,20 +49,8 @@ const cardList = new Section(
 cardList.renderItems();
 
 function addCard() {
-  const newCard = new Section({
-    items: [{ name: nameTitle.value, link: linkInput.value }],
-    renderer: (item) => {
-      const card = new Card(item, '.elements__template', () => {
-        popupPhoto.open(item);
-      });
-      const cardElement = card.generateCard();
-  
-      newCard.addItem(cardElement, true);
-    }
-  },
-    cardListSelector
-  );
-  newCard.renderItems();
+  const card = createCard({ name: nameTitle.value, link: linkInput.value });
+  cardList.addItem(card, true);
   cardFormValidator.disableSubmitButton();
 }
 
