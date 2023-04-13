@@ -51,68 +51,67 @@ const api = new Api({
   }
 });
 
-api.getInitialCards()
-  .then((result) => {
-    cardList.renderItems(result);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-api.getInfoUser()
-  .then((result) => {
-    userInfoInstance.setUserInfo(result);
+api.getInitData()
+  .then(([initialCards, userData]) => {
+    userInfoInstance.setUserInfo(userData);
+    cardList.renderItems(initialCards);
   })
   .catch((err) => {
     console.log(err);
   });
 
 function createCard(item) {
-  const card = new Card(item, userInfoInstance.getUserInfo().name, '.elements__template', () => {
+  const card = new Card(item, userInfoInstance.userId, '.elements__template', () => {
     popupPhoto.open(item);
-  }, () => {
-    openPopupCardDelet.open(item);
   },
-    (id, elementClassList, likesAmount) => {
+    openPopupCardDelet,
+    (id) => {
       api.likeCard(id)
         .then((result) => {
-          elementClassList.toggle('elements__heart_active');
-          likesAmount.textContent = result.likes.length;
+          card.likeCard(result);
         })
         .catch((err) => {
           console.log(err);
         })
     },
-    (id, elementClassList, likesAmount) => { 
+    (id) => { 
       api.dislikeCard(id)
         .then((result) => {
-          elementClassList.toggle('elements__heart_active');
-          likesAmount.textContent = result.likes.length > 0 ? result.likes.length : "";
+          card.dislikeCard(result);
         })
         .catch((err) => {
           console.log(err);
         });
     },
+    (cardId) => {
+      api.deleteCard(cardId)
+        .then(() => {
+          card.deleteCardElement();
+          openPopupCardDelet.close();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   );
   
   return card.generateCard();
 }
 
-function addCard(data, form, submitButton) {
-  submitButton.textContent = 'Сохранение...';
+function addCard(data) {
+  popupAddCard.setLoadingState('Сохранение...');
   api.addNewCard(data)
     .then((result) => {
       const card = createCard(result);
       cardList.addItem(card, true);
       cardFormValidator.disableSubmitButton();
+      popupAddCard.close();
     })
     .catch((err) => {
       alert(`Ошибка при выполнении запроса (${err})`);
     })
     .finally(() => {
-      popupAddCard.close();
-      submitButton.textContent = 'Создать';
-      form.reset();
+      popupAddCard.setLoadingState('Создать');
     })
   
 }
@@ -122,19 +121,18 @@ popupPhoto.setEventListeners();
 
 const popupFormProfile = new PopupWithForm(
   '.popup_type_profile',
-  (data, form, submitButton) => {
-    submitButton.textContent = 'Сохранение...';
+  (data) => {
+    popupFormProfile.setLoadingState('Сохранение...');
     api.editProfile(data)
       .then((result) => {
         userInfoInstance.setUserInfo(result);
+        popupFormProfile.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        popupFormProfile.close();
-        submitButton.textContent = 'Сохранить';
-        form.reset();
+        popupFormProfile.setLoadingState('Сохранить');
       })
 }
 );
@@ -142,20 +140,19 @@ popupFormProfile.setEventListeners();
 
 const popupAvatarChange = new PopupWithForm(
   '.popup_type_avatar-change',
-  (data, form, submitButton) => {
-    submitButton.textContent = 'Сохранение...';
+  (data) => {
+    popupAvatarChange.setLoadingState('Сохранение...');
     api.changeAvatar(data)
     .then((result) => {
       userInfoInstance.setUserInfo(result);
+      popupAvatarChange.close();
+      avatarFormValidator.disableSubmitButton();
     })
     .catch((err) => {
       alert(`Ошибка при выполнении запроса (${err})`);
     })
     .finally(() => {
-      popupAvatarChange.close();
-      submitButton.textContent = 'Сохранить';
-      form.reset();
-      avatarFormValidator.disableSubmitButton();
+      popupAvatarChange.setLoadingState('Сохранить');
     })
 });
 popupAvatarChange.setEventListeners();
@@ -173,15 +170,8 @@ function openProfilePopup() {
 }
 
 const openPopupCardDelet = new PopupCardDelete(
-  '.popup_type_card-delete',
-  (id) => {
-    api.deleteCard(id)
-    .then((_result) => {
-      let card = document.getElementById(id);
-      card.remove();
-      card = null;
-    })
-});
+  '.popup_type_card-delete'
+);
 openPopupCardDelet.setEventListeners();
 
 buttonEdit.addEventListener('click', openProfilePopup);
